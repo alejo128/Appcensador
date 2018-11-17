@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders }from '@angular/common/http';
+//import { HttpRequest } from '@angular/common/http';
+//import { FormsModule }   from '@angular/forms';
+import "rxjs";
+//import { map, filter, switchMap } from 'rxjs/operators';
+//import { Observable } from 'rxjs';
 
 import { Item } from '../../models/item';
 
@@ -8,7 +13,7 @@ const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/js
 @Injectable()
 export class Items {
   items: Item[] = [];
-
+  readonly baseURL = 'http://localhost:3000/ubications'
   defaultItem: any = {
     "name": "Direccion 1",
     "about": "Calle 7 #81-49",
@@ -17,21 +22,16 @@ export class Items {
 
   constructor(private http : HttpClient) {    
     let items = [
-      {
-        "name": "Direccion 1",
+      { "name": "Direccion 1",
         "about": "Calle 7 #81-49",
         "detalle": "Ed Alizares apto 1280"
       },
-      {
-        "name": "Direccion 2",
+      { "name": "Direccion 2",
         "about": "Calle 7 #81-90",
-        "detalle": "Ed cantabria plaza apto 1020"
-      },
-      {
-        "name": "Direccion 3",
+        "detalle": "Ed cantabria plaza apto 1020"},
+      { "name": "Direccion 3",
         "about": "algo",
-        "detalle": "algo"
-      },
+        "detalle": "algo"},
     ];
 
     for (let item of items) {
@@ -54,16 +54,14 @@ export class Items {
       return null;
     });
   }
-
   add(item: Item) {
     this.items.push(item);
   }
   delete(item: Item) {
     this.items.splice(this.items.indexOf(item), 1);
   }
-
   getUbicacion(){
     console.log(this.http.get("http://localhost:3000/ubications"));
-    return this.http.get("http://localhost:3000/ubications");
+    return this.http.get(this.baseURL);
    }
 }
