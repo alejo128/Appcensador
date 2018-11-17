@@ -1,67 +1,47 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders }from '@angular/common/http';
 
 import { Item } from '../../models/item';
+
+const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
 
 @Injectable()
 export class Items {
   items: Item[] = [];
 
   defaultItem: any = {
-    "name": "Burt Bear",
-    "profilePic": "assets/img/speakers/bear.jpg",
-    "about": "Burt is a Bear.",
+    "name": "Direccion 1",
+    "about": "Calle 7 #81-49",
+    "detalle": "Ed Alizares apto 1280"
   };
 
-
-  constructor() {
+  constructor(private http : HttpClient) {    
     let items = [
       {
-        "name": "Burt Bear",
-        "profilePic": "assets/img/speakers/bear.jpg",
-        "about": "Burt is a Bear."
+        "name": "Direccion 1",
+        "about": "Calle 7 #81-49",
+        "detalle": "Ed Alizares apto 1280"
       },
       {
-        "name": "Charlie Cheetah",
-        "profilePic": "assets/img/speakers/cheetah.jpg",
-        "about": "Charlie is a Cheetah."
+        "name": "Direccion 2",
+        "about": "Calle 7 #81-90",
+        "detalle": "Ed cantabria plaza apto 1020"
       },
       {
-        "name": "Donald Duck",
-        "profilePic": "assets/img/speakers/duck.jpg",
-        "about": "Donald is a Duck."
+        "name": "Direccion 3",
+        "about": "algo",
+        "detalle": "algo"
       },
-      {
-        "name": "Eva Eagle",
-        "profilePic": "assets/img/speakers/eagle.jpg",
-        "about": "Eva is an Eagle."
-      },
-      {
-        "name": "Ellie Elephant",
-        "profilePic": "assets/img/speakers/elephant.jpg",
-        "about": "Ellie is an Elephant."
-      },
-      {
-        "name": "Molly Mouse",
-        "profilePic": "assets/img/speakers/mouse.jpg",
-        "about": "Molly is a Mouse."
-      },
-      {
-        "name": "Paul Puppy",
-        "profilePic": "assets/img/speakers/puppy.jpg",
-        "about": "Paul is a Puppy."
-      }
     ];
 
     for (let item of items) {
       this.items.push(new Item(item));
     }
   }
-
   query(params?: any) {
     if (!params) {
       return this.items;
     }
-
     return this.items.filter((item) => {
       for (let key in params) {
         let field = item[key];
@@ -78,8 +58,12 @@ export class Items {
   add(item: Item) {
     this.items.push(item);
   }
-
   delete(item: Item) {
     this.items.splice(this.items.indexOf(item), 1);
   }
+
+  getUbicacion(){
+    console.log(this.http.get("http://localhost:3000/ubications"));
+    return this.http.get("http://localhost:3000/ubications");
+   }
 }
