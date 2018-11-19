@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders }from '@angular/common/http';
-//import { HttpRequest } from '@angular/common/http';
-//import { FormsModule }   from '@angular/forms';
-import "rxjs";
-//import { map, filter, switchMap } from 'rxjs/operators';
-//import { Observable } from 'rxjs';
 
 import { Item } from '../../models/item';
 
@@ -30,8 +25,8 @@ export class Items {
         "about": "Calle 7 #81-90",
         "detalle": "Ed cantabria plaza apto 1020"},
       { "name": "Direccion 3",
-        "about": "algo",
-        "detalle": "algo"},
+        "about": "Cra. 81b #7-19",
+        "detalle": "Ed Reserva de los bernal apto 204"},
     ];
 
     for (let item of items) {
