@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders }from '@angular/common/http';
 
 import { Item } from '../../models/item';
 
-const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
+//const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
 
 @Injectable()
 export class Items {

@@ -1,4 +1,4 @@
-export const FirstRunPage = 'TabsPage';
+export const FirstRunPage = 'WelcomePage';
 
 export const MainPage = 'TabsPage';
 
